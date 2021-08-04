@@ -1,5 +1,6 @@
 package com.carolinapaulo.desafiomercadolivre.usuario;
 
+import com.carolinapaulo.desafiomercadolivre.validator.ValorUnico;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 public class UsuarioRequest {
 
+    @ValorUnico(domainClass = UsuarioModel.class, fieldName = "login")
     @NotBlank
     @Email
     private String login;

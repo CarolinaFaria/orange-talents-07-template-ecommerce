@@ -13,7 +13,7 @@ import javax.validation.constraints.PastOrPresent;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "Usuario")
 public class UsuarioModel {
 
     @Id

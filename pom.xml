@@ -12,7 +12,7 @@
 	<artifactId>desafio-mercado-livre</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>desafio-mercado-livre</name>
-	<description>Desafio Mercado Livre</description>
+	<description>Implementação do Desafio Mercado Livre</description>
 	<properties>
 		<java.version>11</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -46,6 +46,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>
