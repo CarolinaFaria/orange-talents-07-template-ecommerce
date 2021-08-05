@@ -1,6 +1,7 @@
 package com.carolinapaulo.desafiomercadolivre.usuario;
 
 import com.carolinapaulo.desafiomercadolivre.validator.ValorUnico;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -11,10 +12,12 @@ public class UsuarioRequest {
     @ValorUnico(domainClass = UsuarioModel.class, fieldName = "login")
     @NotBlank
     @Email
+    @JsonProperty(value="login")
     private String login;
 
     @NotBlank
     @Length(min = 6)
+    @JsonProperty(value="senha")
     private String senha;
 
     public UsuarioRequest(String login, String senha) {
