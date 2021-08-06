@@ -1,4 +1,4 @@
-package com.carolinapaulo.desafiomercadolivre.usuario;
+package com.carolinapaulo.desafiomercadolivre.config;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -7,6 +7,7 @@ import org.springframework.util.Assert;
 import javax.validation.constraints.NotBlank;
 
 public class SenhaHash {
+
 
     private String senha;
     public SenhaHash(@NotBlank @Length(min = 6) String senha) {
@@ -19,4 +20,6 @@ public class SenhaHash {
     public String hash(){
         return new BCryptPasswordEncoder().encode(senha);
     }
+
+
 }

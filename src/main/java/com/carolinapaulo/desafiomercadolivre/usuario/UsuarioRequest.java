@@ -1,5 +1,6 @@
 package com.carolinapaulo.desafiomercadolivre.usuario;
 
+import com.carolinapaulo.desafiomercadolivre.config.SenhaHash;
 import com.carolinapaulo.desafiomercadolivre.validator.ValorUnico;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
