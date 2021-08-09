@@ -14,12 +14,12 @@ public class UsuarioRequest {
     @NotBlank
     @Email
     @JsonProperty(value="login")
-    private String login;
+    private final String login;
 
     @NotBlank
     @Length(min = 6)
     @JsonProperty(value="senha")
-    private String senha;
+    private final String senha;
 
     public UsuarioRequest(String login, String senha) {
         this.login = login;

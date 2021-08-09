@@ -13,7 +13,7 @@ import javax.validation.Valid;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public UsuarioController(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;

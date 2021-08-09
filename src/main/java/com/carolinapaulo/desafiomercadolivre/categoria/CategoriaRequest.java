@@ -12,10 +12,10 @@ public class CategoriaRequest {
     @NotNull
     @ValorUnico(domainClass = CategoriaModel.class, fieldName = "nomeCategoria")
     @JsonProperty(value="nomeCategoria")
-    private String nomeCategoria;
+    private final String nomeCategoria;
 
     @JsonProperty(value="idCategoriaMae")
-    private Long categoriaMae;
+    private final Long categoriaMae;
 
     public Long getCategoriaMae() {
         return categoriaMae;

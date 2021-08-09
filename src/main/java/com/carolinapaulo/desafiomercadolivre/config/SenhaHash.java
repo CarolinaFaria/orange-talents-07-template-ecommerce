@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class SenhaHash {
 
 
-    private String senha;
+    private final String senha;
     public SenhaHash(@NotBlank @Length(min = 6) String senha) {
         Assert.hasLength(senha, "senha tem que ter valor");
         Assert.isTrue(senha.length()>=6, "senha precisa ter 6 ou mais caracteres");
