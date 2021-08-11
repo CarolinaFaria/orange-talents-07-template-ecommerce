@@ -3,6 +3,7 @@ package com.carolinapaulo.desafiomercadolivre.produto;
 import com.carolinapaulo.desafiomercadolivre.categoria.CategoriaModel;
 import com.carolinapaulo.desafiomercadolivre.produto.caracteristicas.CaracteristicaModel;
 import com.carolinapaulo.desafiomercadolivre.produto.caracteristicas.CaracteristicasRequest;
+import com.carolinapaulo.desafiomercadolivre.produto.imagem.ImagemProdutoModel;
 import com.carolinapaulo.desafiomercadolivre.usuario.UsuarioModel;
 import org.springframework.util.Assert;
 
@@ -16,6 +17,7 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "Produto")
@@ -46,6 +48,9 @@ public class ProdutoModel {
 
     @ManyToOne
     private final UsuarioModel usuario;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<ImagemProdutoModel> imagens = new HashSet<>();
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
     private final Set<CaracteristicaModel> listaCaracteristicas = new HashSet<>();
@@ -81,4 +86,16 @@ public class ProdutoModel {
         return Objects.hash(nome);
     }
 
+    public boolean isOwner(UsuarioModel usuario){
+        return this.usuario.equals(usuario);
+    }
+
+
+    public void adicionaImagens(Set<String> listaLinks) {
+        Set<ImagemProdutoModel> imagens = listaLinks.stream()
+                .map(link -> new ImagemProdutoModel(this, link))
+                .collect(Collectors.toSet());
+
+        this.imagens.addAll(imagens);
+    }
 }
