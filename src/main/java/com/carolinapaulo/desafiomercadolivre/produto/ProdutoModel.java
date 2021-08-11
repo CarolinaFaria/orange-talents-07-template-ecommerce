@@ -4,6 +4,7 @@ import com.carolinapaulo.desafiomercadolivre.categoria.CategoriaModel;
 import com.carolinapaulo.desafiomercadolivre.produto.caracteristicas.CaracteristicaModel;
 import com.carolinapaulo.desafiomercadolivre.produto.caracteristicas.CaracteristicasRequest;
 import com.carolinapaulo.desafiomercadolivre.produto.imagem.ImagemProdutoModel;
+import com.carolinapaulo.desafiomercadolivre.produto.opinioes.OpiniaoModel;
 import com.carolinapaulo.desafiomercadolivre.usuario.UsuarioModel;
 import org.springframework.util.Assert;
 
@@ -54,6 +55,9 @@ public class ProdutoModel {
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
     private final Set<CaracteristicaModel> listaCaracteristicas = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<OpiniaoModel> opinioes;
 
     private final Instant momentoCadastro = Instant.now();
 
