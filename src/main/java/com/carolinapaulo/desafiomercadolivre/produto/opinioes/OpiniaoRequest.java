@@ -2,7 +2,9 @@ package com.carolinapaulo.desafiomercadolivre.produto.opinioes;
 
 import com.carolinapaulo.desafiomercadolivre.produto.ProdutoModel;
 import com.carolinapaulo.desafiomercadolivre.usuario.UsuarioModel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
+import validator.ExistsId;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -24,17 +26,21 @@ public class OpiniaoRequest {
     private String descricao;
 
     @NotBlank
-    private UsuarioModel usuarioLogado;
+    @ExistsId(domainClass = UsuarioModel.class, fieldName="id")
+    @JsonProperty(value="idUsuario")
+    private Long idUsuarioLogado;
 
     @NotBlank
-    private ProdutoModel produto;
+    @ExistsId(domainClass = ProdutoModel.class, fieldName="id")
+    @JsonProperty(value="idUsuario")
+    private Long idProduto;
 
-    public OpiniaoRequest(String titulo, Integer nota, String descricao, UsuarioModel usuarioLogado, ProdutoModel produto) {
+    public OpiniaoRequest(String titulo, Integer nota, String descricao, Long idusuarioLogado, Long idProduto) {
         this.titulo = titulo;
         this.nota = nota;
         this.descricao = descricao;
-        this.usuarioLogado = usuarioLogado;
-        this.produto = produto;
+        this.idUsuarioLogado = idusuarioLogado;
+        this.idProduto = idProduto;
     }
 
     public OpiniaoModel converter(ProdutoModel produto, UsuarioModel usuario) {

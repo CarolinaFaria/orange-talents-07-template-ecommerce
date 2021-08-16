@@ -102,4 +102,8 @@ public class ProdutoModel {
 
         this.imagens.addAll(imagens);
     }
+
+    public UsuarioModel getDono() {
+        return this.usuario;
+    }
 }

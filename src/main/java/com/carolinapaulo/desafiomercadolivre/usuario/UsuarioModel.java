@@ -1,6 +1,5 @@
 package com.carolinapaulo.desafiomercadolivre.usuario;
 
-
 import com.carolinapaulo.desafiomercadolivre.config.SenhaHash;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,7 +41,6 @@ public class UsuarioModel implements UserDetails {
     public UsuarioModel(String login, SenhaHash senhaHash) {
         Assert.isTrue(StringUtils.hasLength(login),"email não pode ser em branco");
         Assert.notNull(senhaHash,"o objeto do tipo senha limpa nao pode ser nulo");
-
 
         this.login = login;
         this.senha = senhaHash.hash();
@@ -86,5 +84,9 @@ public class UsuarioModel implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getEmail() {
+     return this.login;
     }
 }
