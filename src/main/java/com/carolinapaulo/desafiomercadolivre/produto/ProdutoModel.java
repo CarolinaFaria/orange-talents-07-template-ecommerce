@@ -38,7 +38,7 @@ public class ProdutoModel {
 
     @Positive
     @NotNull
-    private final Integer quantidadeDisponivel;
+    private Integer quantidadeDisponivel;
 
     @NotBlank
     @Size(max = 1000)
@@ -95,7 +95,7 @@ public class ProdutoModel {
         return Objects.hash(nome);
     }
 
-    public boolean isOwner(UsuarioModel usuario){
+    public boolean isOwner(UsuarioModel usuario) {
         return this.usuario.equals(usuario);
     }
 
@@ -119,21 +119,23 @@ public class ProdutoModel {
     public String getNome() {
         return nome;
     }
+
     public BigDecimal getValor() {
         return valor;
     }
 
 
-    public <T> Set<T> mapCaracteristicas(Function<CaracteristicaModel,T> funcaoMapeadora) {
+    public <T> Set<T> mapCaracteristicas(Function<CaracteristicaModel, T> funcaoMapeadora) {
         return this.listaCaracteristicas.stream().map(funcaoMapeadora).collect(Collectors.toSet());
     }
 
-    public <T> Set<T> mapImagens(Function<ImagemProdutoModel,T> funcaoMapeadora) {
+    public <T> Set<T> mapImagens(Function<ImagemProdutoModel, T> funcaoMapeadora) {
         return this.imagens.stream().map(funcaoMapeadora).collect(Collectors.toSet());
 
     }
+
     public <T extends Comparable<T>> SortedSet<T> mapPerguntas(Function<PerguntaModel, T> funcaoMapeadora) {
-        return this.perguntas.stream().map(funcaoMapeadora).collect(Collectors.toCollection(TreeSet :: new));
+        return this.perguntas.stream().map(funcaoMapeadora).collect(Collectors.toCollection(TreeSet::new));
 
     }
 
@@ -141,5 +143,17 @@ public class ProdutoModel {
         return new Opinioes(this.opinioes);
     }
 
+    public boolean abataEstoque(@Positive int quantidade) {
+        Assert.isTrue(quantidade > 0, "A quantidade deve ser maior que zero");
+
+        if (quantidade <= this.quantidadeDisponivel) {
+            this.quantidadeDisponivel -= quantidade;
+            return true;
+        }
+        return false;
+    }
+
 
 }
+
+
