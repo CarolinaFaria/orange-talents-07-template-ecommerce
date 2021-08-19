@@ -51,12 +51,13 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers(POST, "/api/users").permitAll()
+                .antMatchers(POST, "/notas-fiscais/**").permitAll()
+                .antMatchers(POST, "/ranking/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
     }
-
 
     //Configuracoes de recursos estaticos(js, css, imagens, etc.)
     @Override

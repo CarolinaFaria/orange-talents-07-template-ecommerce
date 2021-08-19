@@ -1,4 +1,4 @@
-package com.carolinapaulo.desafiomercadolivre.produto.pergunta.email;
+package com.carolinapaulo.desafiomercadolivre.email;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;

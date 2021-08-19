@@ -1,6 +1,5 @@
 package com.carolinapaulo.desafiomercadolivre.compra;
-
-import com.carolinapaulo.desafiomercadolivre.compra.enuns.GatewayPagamento;
+import com.carolinapaulo.desafiomercadolivre.compra.outros.enuns.GatewayPagamento;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;

@@ -1,9 +1,9 @@
 package com.carolinapaulo.desafiomercadolivre.compra;
 
-import com.carolinapaulo.desafiomercadolivre.compra.enuns.GatewayPagamento;
+import com.carolinapaulo.desafiomercadolivre.compra.outros.enuns.GatewayPagamento;
 import com.carolinapaulo.desafiomercadolivre.produto.ProdutoModel;
 import com.carolinapaulo.desafiomercadolivre.produto.ProdutoRepository;
-import com.carolinapaulo.desafiomercadolivre.produto.pergunta.email.EmailFake;
+import com.carolinapaulo.desafiomercadolivre.email.EmailFake;
 import com.carolinapaulo.desafiomercadolivre.usuario.UsuarioModel;
 import com.carolinapaulo.desafiomercadolivre.usuario.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
@@ -22,15 +22,13 @@ public class CompraParte1Controller {
 
     private ProdutoRepository produtoRepository;
 
-    private UsuarioRepository usuarioRepository;
-
     private CompraRepository compraRepository;
 
     private EmailFake email;
 
-    public CompraParte1Controller(ProdutoRepository produtoRepository, UsuarioRepository usuarioRepository, EmailFake email) {
+    public CompraParte1Controller(ProdutoRepository produtoRepository, UsuarioRepository usuarioRepository, CompraRepository compraRepository, EmailFake email) {
         this.produtoRepository = produtoRepository;
-        this.usuarioRepository = usuarioRepository;
+        this.compraRepository = compraRepository;
         this.email = email;
     }
 
@@ -47,7 +45,7 @@ public class CompraParte1Controller {
         if(quantidadeAbatida){
             CompraModel novaCompra = new CompraModel(produtoObj, quantidade, usuarioLogado, gateway);
             compraRepository.save(novaCompra);
-
+            email.novaCompra(novaCompra);
             return  ResponseEntity.ok(gateway.redirectUrl(novaCompra, uriBuilder));
         }
         return ResponseEntity.badRequest().build();

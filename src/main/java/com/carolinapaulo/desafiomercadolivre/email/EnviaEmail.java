@@ -1,4 +1,4 @@
-package com.carolinapaulo.desafiomercadolivre.produto.pergunta.email;
+package com.carolinapaulo.desafiomercadolivre.email;
 
 public interface EnviaEmail {
 

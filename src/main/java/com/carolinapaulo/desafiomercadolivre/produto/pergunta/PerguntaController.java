@@ -2,7 +2,7 @@ package com.carolinapaulo.desafiomercadolivre.produto.pergunta;
 
 import com.carolinapaulo.desafiomercadolivre.produto.ProdutoModel;
 import com.carolinapaulo.desafiomercadolivre.produto.ProdutoRepository;
-import com.carolinapaulo.desafiomercadolivre.produto.pergunta.email.EmailFake;
+import com.carolinapaulo.desafiomercadolivre.email.EmailFake;
 import com.carolinapaulo.desafiomercadolivre.usuario.UsuarioModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
